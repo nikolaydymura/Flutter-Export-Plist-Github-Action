@@ -54,6 +54,6 @@ runs:
           printf '\n</dict>'
           printf '\n</plist>'
         } > "temp-export-options.plist"
-        echo "export-plist-content=$(cat temp-export-options.plist)" >> $GITHUB_OUTPUT
+        echo "export-plist-content='$(cat temp-export-options.plist)'" >> $GITHUB_OUTPUT
         rm temp-export-options.plist
       shell: bash
