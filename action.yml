@@ -17,10 +17,9 @@ inputs:
   provisioning-profile-specifier:
     description: 'Provisioning Profile Specifier'
     required: true
-outputs:
-  export-plist-content:
-    description: "Plist body"
-    value: ${{ steps.plist-generator.outputs.export-plist-content }}
+  export-plist-path:
+    description: 'Output path'
+    required: true
 runs:
   using: "composite"
   steps:
@@ -53,7 +52,5 @@ runs:
           printf '\n\t</dict>'
           printf '\n</dict>'
           printf '\n</plist>'
-        } > "temp-export-options.plist"
-        echo "export-plist-content='$(cat temp-export-options.plist)'" >> $GITHUB_OUTPUT
-        rm temp-export-options.plist
+        } > "${{ inputs.export-plist-path }}"
       shell: bash
